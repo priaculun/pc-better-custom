@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.0.1
+
+### Fixed
+
+- Declare `yaml` as a runtime `dependencies` entry. A clean `pi install` from git
+  runs `npm install --omit=dev`, so without this an OMP `models.yml`/`models.yaml`
+  config could not be read or written after a fresh install.
+- Add `peerDependencies` for `@mariozechner/pi-coding-agent` and
+  `@mariozechner/pi-tui` (optional), matching how Pi resolves host APIs.
+- Add `repository` / `homepage` / `bugs` metadata.
+
+### Docs
+
+- Rewrite the install section: real repo URL, `git:`/SSH/pinned-tag forms,
+  project-local `-l`, local-path installs, the manual drop-in caveat about
+  `yaml`, and the warning not to install twice (duplicate `/better-custom`).
+- Document runtime vs peer vs dev dependencies.
+
 ## 1.0.0
 
 Fork of [`better-custom`](https://github.com/ratatulieoi/better-custom) v0.4.2 with

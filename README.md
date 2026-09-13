@@ -100,24 +100,76 @@ extended-effort cap.
 
 ## Install
 
-From GitHub:
+> **Pick one install method.** Do not install the package *and* keep a copy in
+> `~/.pi/agent/extensions/` — both would register `/better-custom` and you would
+> get a second `/better-custom:2` command.
+
+### From GitHub (recommended)
 
 ```bash
-pi install https://github.com/<you>/pc-better-custom
+pi install https://github.com/priaculun/pc-better-custom
 ```
 
-From a local checkout:
+Equivalent shorthand and SSH forms:
+
+```bash
+pi install git:github.com/priaculun/pc-better-custom
+pi install git:git@github.com:priaculun/pc-better-custom
+```
+
+Pi clones the repo to `~/.pi/agent/git/github.com/priaculun/pc-better-custom` and
+runs `npm install --omit=dev`, so the one runtime dependency (`yaml`, used for
+OMP `models.yml`) is installed for you.
+
+### Pinned to a release
+
+```bash
+pi install git:github.com/priaculun/pc-better-custom@v1.0.1
+```
+
+Pinned refs are not moved by `pi update --extensions`. To re-point an existing
+clone at a newer tag, install again with the new ref.
+
+### Project-local
+
+Add `-l` to write to `.pi/settings.json` instead of the global settings:
+
+```bash
+pi install -l https://github.com/priaculun/pc-better-custom
+```
+
+### From a local checkout
+
+Paths are referenced in place, not copied:
 
 ```bash
 pi install /absolute/path/to/pc-better-custom
+pi install ./relative/path/to/pc-better-custom
 ```
 
-Or drop it in an auto-discovered location and `/reload`:
+### Manual drop-in (no package manager)
+
+Copy `index.ts` into an auto-discovered location and `/reload`:
 
 ```
 ~/.pi/agent/extensions/pc-better-custom/index.ts   # global
 .pi/extensions/pc-better-custom/index.ts           # project-local
 ```
+
+This path is a single file with no build step. If you use an **OMP YAML config**
+(`models.yml`/`models.yaml`), make sure `yaml` is resolvable from there, or use
+one of the `pi install` methods above, which installs it.
+
+### Manage
+
+```bash
+pi list                       # show installed packages
+pi update --extensions        # update installed packages
+pi remove https://github.com/priaculun/pc-better-custom
+```
+
+There is no build step: `index.ts` is loaded directly (Pi uses jiti), so an
+install is just the clone plus `yaml`.
 
 ## Usage
 
@@ -164,6 +216,14 @@ onto the published `@earendil-works/*` type packages used for typechecking.
 
 `index.ts` is the whole extension — a single file so it can be dropped into
 `extensions/` without a build step.
+
+### Dependencies
+
+| Package | Why |
+|---|---|
+| `yaml` (runtime) | Reads/writes OMP `models.yml` / `models.yaml`. Resolved lazily, so plain JSON configs never load it. |
+| `@mariozechner/pi-coding-agent`, `@mariozechner/pi-tui` (peer, optional) | Host APIs. Pi bundles them, so they are never installed. |
+| `@earendil-works/*`, `typescript`, `@types/node` (dev) | Typechecking only. |
 
 ## How it maps to pi
 
