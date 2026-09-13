@@ -1,0 +1,14 @@
+node_modules/
+*.log
+
+# Pi runtime state (never commit)
+better-custom.state.json
+models.json
+models.yml
+models.yaml
+.auth.json
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/

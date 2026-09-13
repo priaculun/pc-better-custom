@@ -1,0 +1,52 @@
+{
+  "name": "pc-better-custom",
+  "version": "1.0.0",
+  "description": "Pi extension: custom provider wizard with OpenRouter metadata enrichment, difficulty-based auto thinking, and self-healing reasoning effort.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-extension",
+    "pi-coding-agent",
+    "oh-my-pi",
+    "omp",
+    "omp-extension",
+    "better-custom",
+    "custom-provider",
+    "llm-provider",
+    "ai-provider",
+    "provider-manager",
+    "custom-model",
+    "openrouter",
+    "openai-compatible",
+    "anthropic-compatible",
+    "ollama-compatible",
+    "reasoning-effort",
+    "thinking-level"
+  ],
+  "files": [
+    "index.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "scripts": {
+    "check": "node --check index.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "^0.85.1",
+    "@earendil-works/pi-coding-agent": "^0.85.1",
+    "@earendil-works/pi-tui": "^0.85.1",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

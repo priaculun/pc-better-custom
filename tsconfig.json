@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowImportingTsExtensions": true,
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@mariozechner/pi-coding-agent": ["./node_modules/@earendil-works/pi-coding-agent/dist/index.d.ts"],
+      "@mariozechner/pi-tui": ["./node_modules/@earendil-works/pi-tui/dist/index.d.ts"],
+      "@mariozechner/pi-ai": ["./node_modules/@earendil-works/pi-ai/dist/compat.d.ts"]
+    }
+  },
+  "include": ["index.ts"]
+}
